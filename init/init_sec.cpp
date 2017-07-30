@@ -32,17 +32,33 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
 
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
+
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
+
+
 void make_me_dual()
 {
 	property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-	property_set("persist.radio.multisim.config", "dsds");
-	property_set("ro.multisim.simslotcount", "2");
+	property_override("persist.radio.multisim.config", "dsds");
+	property_override("ro.multisim.simslotcount", "2");
 }
 
 void vendor_load_properties()
@@ -55,7 +71,6 @@ void vendor_load_properties()
         property_set("ro.build.description", "j7eltexx-user 6.0.1 MMB29K J700FXXU3BPK1 release-keys");
         property_set("ro.product.model", "SM-J700F");
         property_set("ro.product.device", "j7elte");
-	make_me_dual();
     } else if (bootloader.find("J700M") == 0) {
         property_set("ro.build.fingerprint", "samsung/j7eltexx/j7elte:5.1.1/LMY47X/J700MUBU1APA1:user/release-keys");
         property_set("ro.build.description", "j7eltexx-user 5.1.1 LMY47X J700MUBU1APA1 release-keys");
@@ -66,7 +81,6 @@ void vendor_load_properties()
         property_set("ro.build.description", "j7e3gxx-user 5.1.1 LMY48B J700HXXU2APC5 release-keys");
         property_set("ro.product.model", "SM-J700H");
         property_set("ro.product.device", "j7e3g");
-	make_me_dual();
     }
 
     std::string device = property_get("ro.product.device");

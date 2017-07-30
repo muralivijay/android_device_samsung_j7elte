@@ -35,7 +35,6 @@ BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_sec
-TARGET_UNIFIED_DEVICE := true
 
 # Kernel
 TARGET_KERNEL_CONFIG := j7elte_defconfig
