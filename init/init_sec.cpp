@@ -54,11 +54,26 @@ void property_override(char const prop[], char const value[])
 }
 
 
-void make_me_dual()
+void set_sim_info ()
 {
-	property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-	property_set("persist.radio.multisim.config", "dsds");
-	property_set("ro.multisim.simslotcount", "2");
+	FILE *file;
+	char *simslot_count_path = "/proc/simslot_count";
+	char simslot_count[2] = "\0";
+
+	file = fopen(simslot_count_path, "r");
+
+	if (file != NULL) {
+		simslot_count[0] = fgetc(file);
+		property_set("ro.multisim.simslotcount", simslot_count);
+		if(strcmp(simslot_count, "2") == 0) {
+			property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+			property_set("persist.radio.multisim.config", "dsds");
+		}
+		fclose(file);
+	}
+	else {
+		ERROR("Could not open '%s'\n", simslot_count_path);
+	}
 }
 
 void vendor_load_properties()
@@ -66,24 +81,29 @@ void vendor_load_properties()
 
     std::string bootloader = property_get("ro.bootloader");
 
-    if (bootloader.find("J700F") == 0) {
+    if (bootloader.find("J700F") != std::string::npos) {
+	/* SM-J700F */
         property_set("ro.build.fingerprint", "samsung/j7eltexx/j7elte:6.0.1/MMB29K/J700FXXU3BPK1:user/release-keys");
         property_set("ro.build.description", "j7eltexx-user 6.0.1 MMB29K J700FXXU3BPK1 release-keys");
         property_set("ro.product.model", "SM-J700F");
         property_set("ro.product.device", "j7elte");
-    } else if (bootloader.find("J700M") == 0) {
+    } else if (bootloader.find("J700M") != std::string::npos) {
+	/* SM-J700M */
         property_set("ro.build.fingerprint", "samsung/j7eltexx/j7elte:5.1.1/LMY47X/J700MUBU1APA1:user/release-keys");
         property_set("ro.build.description", "j7eltexx-user 5.1.1 LMY47X J700MUBU1APA1 release-keys");
         property_set("ro.product.model", "SM-J700M");
         property_set("ro.product.device", "j7elte");
     } else {
+	/* SM-J700H */
         property_set("ro.build.fingerprint", "samsung/j7e3gxx/j7e3g:5.1.1/LMY48B/J700HXXU2APC5:user/release-keys");
         property_set("ro.build.description", "j7e3gxx-user 5.1.1 LMY48B J700HXXU2APC5 release-keys");
         property_set("ro.product.model", "SM-J700H");
         property_set("ro.product.device", "j7e3g");
     }
 
-    std::string device = property_get("ro.product.device");
-    std::string devicename = property_get("ro.product.model");
-    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), devicename.c_str());
+	set_sim_info();
+
+	std::string device = property_get("ro.product.device");
+	std::string devicename = property_get("ro.product.model");
+	ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), devicename.c_str());
 }
