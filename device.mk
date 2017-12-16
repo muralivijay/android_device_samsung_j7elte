@@ -50,6 +50,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
+# Ims-Shim
+PRODUCT_PACKAGES += \
+    libsec-ims_shim
+
 # Key-layout
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc \
@@ -69,7 +73,7 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += \
     power.universal7580
-    
+
 # Permissions
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/imsmanager_library.xml:system/etc/permissions/imsmanager_library.xml \
@@ -96,7 +100,7 @@ PRODUCT_COPY_FILES += \
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
     wifi.interface=wlan0
-    
+
 # Samsung
 PRODUCT_PACKAGES += \
     SamsungServiceMode
