@@ -18,7 +18,7 @@ bin/gps.cer
 lib/hw/gps.default.so:lib/hw/gps.universal7580.so
 lib/libwrappergps.so
 
-### Graphics
+### Graphics (j700T -NN)
 vendor/lib/egl/libGLES_mali.so
 
 ### Media
