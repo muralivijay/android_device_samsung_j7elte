@@ -38,8 +38,8 @@ TARGET_INIT_VENDOR_LIB := libinit_sec
 TARGET_UNIFIED_DEVICE := true
 
 # Kernel
-TARGET_KERNEL_CONFIG := lineageos_j7elte_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/a3xelte
+TARGET_KERNEL_CONFIG := j7elte_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/j7elte
 
 # Extracted with libbootimg
 #BOARD_KERNEL_SEPARATED_DT := true
