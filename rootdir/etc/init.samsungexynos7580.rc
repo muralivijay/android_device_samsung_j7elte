@@ -3,6 +3,7 @@ import init.baseband.rc
 import init.wifi.rc
 import init.samsung.rc
 import init.power.rc
+import init.carrier.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
@@ -396,7 +397,15 @@ service ipsec-daemon /system/bin/IPSecService
     socket ipsec_socket stream 660 system system
     user system
     group system net_raw inet net_admin
-
+        
+# IMS stack for IMS
+service imsd /system/bin/imsd
+    class main
+    socket imsd stream 0660 system system
+    socket sme_socket stream 0660 system system
+    user root
+    group system radio net_raw inet net_admin
+    
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main

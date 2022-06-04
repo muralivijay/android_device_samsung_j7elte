@@ -78,6 +78,7 @@ PRODUCT_PACKAGES += \
     init.samsungexynos7580.rc \
     init.samsungexynos7580.usb.rc \
     init.wifi.rc \
+    init.carrier.rc \
     ueventd.samsungexynos7580.rc
 
 # Wi-fi
