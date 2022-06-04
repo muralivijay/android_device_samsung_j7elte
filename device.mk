@@ -69,6 +69,11 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += \
     power.universal7580
+    
+# Permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/imsmanager_library.xml:system/etc/permissions/imsmanager_library.xml \
+    $(LOCAL_PATH)/configs/permissions/platform.xml:system/etc/permissions/platform.xml 
 
 # Ramdisk
 PRODUCT_PACKAGES += \
