@@ -72,7 +72,9 @@ PRODUCT_PACKAGES += \
     
 # Permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/imsmanager_library.xml:system/etc/permissions/imsmanager_library.xml
+    $(LOCAL_PATH)/configs/permissions/imsmanager_library.xml:system/etc/permissions/imsmanager_library.xml \
+    $(LOCAL_PATH)/configs/permissions/sec_platform_library.xml:system/etc/permissions/sec_platform_library.xml \
+    $(LOCAL_PATH)/configs/permissions/rcsopenapi_library.xml:system/etc/permissions/rcsopenapi_library.xml
 #    $(LOCAL_PATH)/configs/permissions/platform.xml:system/etc/permissions/platform.xml 
 
 # Ramdisk

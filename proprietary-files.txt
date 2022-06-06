@@ -152,7 +152,18 @@ priv-app/ImsTelephonyService/ImsTelephonyService.apk
 csc/others.xml
 bin/imsd
 framework/imsmanager.jar
+framework/rcsopenapi.jar
+framework/sec_platform_library.jar
 lib/libsec-ims.so
+lib/libaresdns.so
+lib/libcpve-client.so
+lib/libsveservice.so
+lib/libSamsungAPVoiceEngine.so
+lib/libfloatingfeature.so
+lib/libSTE.so
+lib/libcurl2.so
+lib/libevs_float.so
+lib/libPSI.so
 
 ### Sensors
 lib/hw/sensors.universal7580.so
