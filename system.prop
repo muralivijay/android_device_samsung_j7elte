@@ -1,3 +1,7 @@
+# Adb
+persist.service.debuggable=1
+persist.sys.usb.config=mtp,adb
+
 # Audio
 audio_hal.disable_two_mic=true
 
