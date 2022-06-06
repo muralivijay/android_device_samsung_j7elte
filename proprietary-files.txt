@@ -136,6 +136,9 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_SPEAKER.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
 
+### HW
+lib/hw/gralloc.exynos5.so
+
 ### RIL
 # opensource rild don't work well for dual sim
 bin/rild
