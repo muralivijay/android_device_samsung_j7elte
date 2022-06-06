@@ -62,6 +62,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.samsungexynos7580
 
 # Radio
 BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril
+BOARD_PROVIDES_RILD := true
 BOARD_MODEM_TYPE := tss310
 
 # inherit from the proprietary version
